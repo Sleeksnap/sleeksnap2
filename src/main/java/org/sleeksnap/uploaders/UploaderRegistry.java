@@ -13,6 +13,7 @@ import org.sleeksnap.uploaders.types.TextUploader;
 import org.sleeksnap.uploaders.types.URLUploader;
 import org.sleeksnap.util.ClassUtils;
 
+import java.io.File;
 import java.util.*;
 
 /**
@@ -66,7 +67,7 @@ public class UploaderRegistry {
 	 * @param uploader The uploader to register
 	 * @param types    The list of types to register it for
 	 */
-	public void registerUploaderTypes(Uploader uploader, Class<? extends Upload>... types) {
+	public void registerUploaderTypes(Uploader uploader, Class... types) {
 		for (Class<? extends Upload> type : types) {
 			uploaders.put(type, uploader);
 		}
@@ -81,5 +82,17 @@ public class UploaderRegistry {
 	 */
 	public Collection<Uploader> getUploadersFor(Class<? extends Upload> type) {
 		return uploaders.get(type);
+	}
+
+	/**
+	 * Load uploaders for this registry
+	 * @param directory The directory to load from
+	 */
+	public void load(File directory) {
+		for (File f : directory.listFiles()) {
+			if (f.getName().endsWith("jar") || f.getName().endsWith("zip")) {
+				// TODO loading
+			}
+		}
 	}
 }
