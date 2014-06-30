@@ -2,7 +2,6 @@ package org.sleeksnap.uploaders;
 
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
-import com.google.gson.Gson;
 import org.sleeksnap.upload.ByteStreamUpload;
 import org.sleeksnap.upload.Upload;
 import org.sleeksnap.upload.types.ImageUpload;
@@ -14,13 +13,11 @@ import org.sleeksnap.uploaders.types.TextUploader;
 import org.sleeksnap.uploaders.types.URLUploader;
 import org.sleeksnap.util.ClassUtils;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.*;
-import java.util.jar.JarFile;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * An Uploader repository of sorts, containing information about all possible uploaders along with their instances.

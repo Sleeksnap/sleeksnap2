@@ -1,7 +1,5 @@
 package org.sleeksnap.uploaders;
 
-import java.util.*;
-
 /**
  * Represents an uploader's information
  *
