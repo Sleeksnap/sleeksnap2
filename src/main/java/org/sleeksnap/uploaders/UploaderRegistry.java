@@ -2,6 +2,7 @@ package org.sleeksnap.uploaders;
 
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
+import com.google.gson.Gson;
 import org.sleeksnap.upload.ByteStreamUpload;
 import org.sleeksnap.upload.Upload;
 import org.sleeksnap.upload.types.ImageUpload;
@@ -14,11 +15,15 @@ import org.sleeksnap.uploaders.types.URLUploader;
 import org.sleeksnap.util.ClassUtils;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
+import java.util.jar.JarFile;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 /**
  * An Uploader repository of sorts, containing information about all possible uploaders along with their instances.
- * TODO only load what we need instead of everything?
  *
  * @author Nikki
  */
@@ -42,14 +47,14 @@ public class UploaderRegistry {
 	/**
 	 * A Multimap containing mappings of Upload types to Uploaders
 	 */
-	private Multimap<Class<? extends Upload>, Uploader> uploaders = LinkedHashMultimap.create();
+	private Multimap<Class<? extends Upload>, UploaderContainer> uploaders = LinkedHashMultimap.create();
 
 	/**
 	 * Register an uploader by automatically detecting what types it can upload
 	 *
 	 * @param uploader The uploader to register
 	 */
-	public void register(Uploader uploader) {
+	public void register(UploaderContainer uploader) {
 		List<Class<? extends Upload>> uploadTypes = new LinkedList<>();
 
 		for (Class<?> cl : uploader.getClass().getInterfaces()) {
@@ -67,7 +72,7 @@ public class UploaderRegistry {
 	 * @param uploader The uploader to register
 	 * @param types    The list of types to register it for
 	 */
-	public void registerUploaderTypes(Uploader uploader, Class... types) {
+	public void registerUploaderTypes(UploaderContainer uploader, Class... types) {
 		for (Class<? extends Upload> type : types) {
 			uploaders.put(type, uploader);
 		}
@@ -80,19 +85,7 @@ public class UploaderRegistry {
 	 * @param type The upload type
 	 * @return The Collection of uploaders
 	 */
-	public Collection<Uploader> getUploadersFor(Class<? extends Upload> type) {
+	public Collection<UploaderContainer> getUploadersFor(Class<? extends Upload> type) {
 		return uploaders.get(type);
-	}
-
-	/**
-	 * Load uploaders for this registry
-	 * @param directory The directory to load from
-	 */
-	public void load(File directory) {
-		for (File f : directory.listFiles()) {
-			if (f.getName().endsWith("jar") || f.getName().endsWith("zip")) {
-				// TODO loading
-			}
-		}
 	}
 }
