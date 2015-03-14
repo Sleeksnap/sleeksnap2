@@ -6,7 +6,12 @@
 
     <groupId>org.sleeksnap</groupId>
     <artifactId>Sleeksnap</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>utils</module>
+        <module>core</module>
+    </modules>
 
     <dependencies>
         <dependency>
@@ -23,6 +28,11 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>17.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.isomorphism</groupId>
+            <artifactId>token-bucket</artifactId>
+            <version>1.2</version>
         </dependency>
     </dependencies>
 </project>
