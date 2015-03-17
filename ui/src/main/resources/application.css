@@ -1,0 +1,17 @@
+.settings{
+    -fx-background-color: #666970;
+}
+.settings-toolbar .hyperlink, .settings-toolbar .button, .settings-toolbar, .settings-toolbar .glyph-icon{
+    -fx-text-fill: white;
+    -fx-fill: white;
+}
+.settings-toolbar {
+    -fx-base: #505359;
+    -fx-background: #505359;
+    -fx-shadow-highlight-color: transparent;
+    -fx-spacing: 5;
+    -fx-padding: 4 4 4 4;
+}
+.settings-toolbar .hyperlink:focused {
+    -fx-focus-color: transparent;
+}

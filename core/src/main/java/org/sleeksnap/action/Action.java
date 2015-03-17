@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 public interface Action<T> {
 
 	/**
-	 * Execute the specified action.
+	 * Execute this action.
 	 *
 	 * @param consumer The consumer.
 	 * @throws Exception If an error occurred during execution.
